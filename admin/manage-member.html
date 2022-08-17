@@ -1,0 +1,45 @@
+
+<div class="main-content">
+    <div class="header txt-center">
+        <h1>Member</h1>
+        <p>
+  
+        </p>
+    </div>
+
+    <div class="info">
+        <a href="<?php echo SITEURL?>crud/add-member.php"><button class="btn-primary">Add Member</button></a>
+        <input type="text" id="search" autocomplete="off" placeholder = "SEARCH" style = "margin-left: 75px">
+
+        <div id="searchresult">
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+           
+        </table>
+        </div>
+    </div>
+</div>
+
+<script type = "text/javascript">
+    $(document).ready(function(){
+        $("#search").keyup(function(){
+            var input = $("#search").val();
+            $.post("crud/member-search.php", {
+                input: input
+            }, function(data){
+                $("#searchresult").html(data);
+            });
+        });
+    });
+</script>
+
